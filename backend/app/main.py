@@ -1,6 +1,21 @@
 from fastapi import FastAPI
 
 from app.api.patients import router as patients_router
+from app.database.database import Base, engine
+
+# Import all models so SQLAlchemy knows about them
+from app.models.patient import Patient
+from app.models.medical_record import MedicalRecord
+from app.models.prescription import Prescription
+from app.models.appointment import Appointment
+from app.models.lab_report import LabReport
+from app.models.email import Email
+
+
+# Create database tables
+Base.metadata.create_all(
+    bind=engine
+)
 
 
 app = FastAPI(

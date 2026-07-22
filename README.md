@@ -8,7 +8,7 @@ An intentionally vulnerable AI-powered healthcare platform designed for:
 - Prompt injection testing
 - Agent hijacking research
 - Memory poisoning testing
-- Tool abuse testing
+- Tool abuse testing	
 - Data leakage testing
 - MITRE ATLAS research
 - OWASP LLM security testing
