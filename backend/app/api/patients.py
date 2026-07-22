@@ -4,7 +4,8 @@ from sqlalchemy.orm import Session
 from app.database.database import get_db
 from app.models.patient import Patient
 from app.schemas.patient import PatientCreate, PatientResponse
-
+from app.models.medical_record import MedicalRecord
+from app.schemas.medical_record import MedicalRecordResponse
 
 router = APIRouter(
     prefix="/patients",
@@ -137,3 +138,31 @@ def create_patient(
     db.refresh(new_patient)
 
     return new_patient
+
+@router.get(
+    "/{patient_id}/records",
+    response_model=list[MedicalRecordResponse]
+)
+def get_patient_records(
+    patient_id: int,
+    db: Session = Depends(get_db)
+):
+
+    patient = (
+        db.query(Patient)
+        .filter(Patient.id == patient_id)
+        .first()
+    )
+
+    if not patient:
+
+        raise HTTPException(
+            status_code=404,
+            detail="Patient not found"
+        )
+
+    return (
+        db.query(MedicalRecord)
+        .filter(MedicalRecord.patient_id == patient_id)
+        .all()
+    )

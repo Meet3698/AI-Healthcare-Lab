@@ -10,7 +10,7 @@ from app.models.prescription import Prescription
 from app.models.appointment import Appointment
 from app.models.lab_report import LabReport
 from app.models.email import Email
-
+from app.api.medical_records import router as medical_records_router
 
 # Create database tables
 Base.metadata.create_all(
@@ -44,4 +44,8 @@ def health_check():
 
 app.include_router(
     patients_router
+)
+
+app.include_router(
+    medical_records_router
 )
