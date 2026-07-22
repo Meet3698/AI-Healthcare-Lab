@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # AI Healthcare Security Lab
 
 An intentionally vulnerable AI-powered healthcare platform designed for:
@@ -63,3 +64,6 @@ Tools / Plugins / External APIs
   |
   v
 PostgreSQL / Vector Database / File Storage
+=======
+# AI-Healthcare-Lab
+>>>>>>> 5cecd0ce5d2c635408bffb6e78e6beddb52c46cc
