@@ -12,6 +12,11 @@ from app.models.lab_report import LabReport
 from app.models.email import Email
 from app.api.medical_records import router as medical_records_router
 from app.api.prescriptions import router as prescriptions_router
+from app.api.appointments import router as appointments_router
+
+
+
+
 
 # Create database tables
 Base.metadata.create_all(
@@ -53,4 +58,8 @@ app.include_router(
 
 app.include_router(
     prescriptions_router
+)
+
+app.include_router(
+    appointments_router
 )

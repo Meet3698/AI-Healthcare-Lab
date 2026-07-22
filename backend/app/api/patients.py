@@ -8,6 +8,8 @@ from app.models.medical_record import MedicalRecord
 from app.schemas.medical_record import MedicalRecordResponse
 from app.models.prescription import Prescription
 from app.schemas.prescription import PrescriptionResponse
+from app.models.appointment import Appointment
+from app.schemas.appointment import AppointmentResponse
 
 
 router = APIRouter(
@@ -196,6 +198,36 @@ def get_patient_prescriptions(
         db.query(Prescription)
         .filter(
             Prescription.patient_id == patient_id
+        )
+        .all()
+    )
+
+@router.get(
+    "/{patient_id}/appointments",
+    response_model=list[AppointmentResponse]
+)
+def get_patient_appointments(
+    patient_id: int,
+    db: Session = Depends(get_db)
+):
+
+    patient = (
+        db.query(Patient)
+        .filter(Patient.id == patient_id)
+        .first()
+    )
+
+    if not patient:
+
+        raise HTTPException(
+            status_code=404,
+            detail="Patient not found"
+        )
+
+    return (
+        db.query(Appointment)
+        .filter(
+            Appointment.patient_id == patient_id
         )
         .all()
     )
