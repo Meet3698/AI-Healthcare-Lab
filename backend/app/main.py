@@ -13,7 +13,7 @@ from app.models.email import Email
 from app.api.medical_records import router as medical_records_router
 from app.api.prescriptions import router as prescriptions_router
 from app.api.appointments import router as appointments_router
-
+from app.api.chat import router as chat_router
 
 
 
@@ -62,4 +62,8 @@ app.include_router(
 
 app.include_router(
     appointments_router
+)
+
+app.include_router(
+    chat_router
 )
